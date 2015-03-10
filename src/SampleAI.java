@@ -17,7 +17,7 @@ public class SampleAI {
 	private static int[][] hidden_record;// 非公開情報記録用
 	private static int[][] my_hidden_record;// 自分の非公開情報記録用
 	private static int[][] cases;
-	private static AITools tools;
+	private static AITools tools;// 得点計算系のクラスを分けた
 	private static double[] zenhan;// 前半戦の得点
 	private static int enemy_lim = 252;// 敵の予想手数
 
