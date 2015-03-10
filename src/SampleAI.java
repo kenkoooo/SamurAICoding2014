@@ -1,9 +1,6 @@
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -241,8 +238,7 @@ public class SampleAI {
 		return vLords;
 	}
 
-	private static double[] evaluateHand(int gt_id, int player_id, int loop,
-			boolean wins) {
+	private static double[] evaluateHand(int gt_id, int player_id, int loop, boolean wins) {
 		double[] eval = new double[4];
 
 		for (int k = 0; k < loop; k++) {
@@ -301,8 +297,7 @@ public class SampleAI {
 			if (turn >= 6) {
 				max += (hidden_record[2][i] + hidden_record[3][i]) * 200;
 			}
-			boxs.add(new LordBox(i, max + lords[i].strength * 10
-					+ random.nextInt(10)));
+			boxs.add(new LordBox(i, max + lords[i].strength * 10 + random.nextInt(10)));
 		}
 		Collections.sort(boxs);
 		for (int i = 0; i < lordBox.length; i++) {
@@ -343,8 +338,7 @@ public class SampleAI {
 		return tmp;
 	}
 
-	private static int[] extractMap(int player_id, int prev_lim, int next_lim,
-			int loop) {
+	private static int[] extractMap(int player_id, int prev_lim, int next_lim, int loop) {
 
 		// 生成
 		ArrayList<Candidate> list = new ArrayList<Candidate>();
@@ -451,132 +445,6 @@ public class SampleAI {
 
 		}
 
-	}
-
-	private static void shoteTaiyo(int[] pattern) {
-		StringBuilder command = new StringBuilder();
-		int[] clone = pattern.clone();
-		Arrays.sort(clone);
-
-		String key = "";
-		for (int i = 0; i < clone.length; i++) {
-			key += String.valueOf(clone[i]);
-		}
-
-		Map<String, String> list = new HashMap<String, String>();
-		list.put("333333", "000023");// iwashi
-		list.put("333334", "000014");
-		list.put("333335", "000005");
-		list.put("333336", "000005");
-		list.put("333344", "000023");
-		list.put("333345", "000014");
-		list.put("333346", "000005");
-		list.put("333355", "000023");
-		list.put("333356", "000014");
-		list.put("333366", "000023");
-		list.put("333444", "000122");
-		list.put("333445", "000014");
-		list.put("333446", "000005");
-		list.put("333455", "000023");
-		list.put("333456", "000014");
-		list.put("333466", "000023");
-		list.put("333555", "000122");
-		list.put("333556", "000113");
-		list.put("333566", "000023");
-		list.put("333666", "000122");
-		list.put("334444", "001112");
-		list.put("334445", "000113");
-		list.put("334446", "000005");
-		list.put("334455", "000023");
-		list.put("334456", "000014");
-		list.put("334466", "000023");
-		list.put("334555", "000122");
-		list.put("334556", "000113");
-		list.put("334566", "000023");
-		list.put("334666", "000122");
-		list.put("335555", "001112");
-		list.put("335556", "000113");
-		list.put("335566", "000023");
-		list.put("335666", "000122");
-		list.put("336666", "001112");
-		list.put("344444", "000023");// iwashi
-		list.put("344445", "000113");
-		list.put("344446", "000014");
-		list.put("344455", "000023");
-		list.put("344456", "000023");
-		list.put("344466", "000023");
-		list.put("344555", "000122");
-		list.put("344556", "000113");
-		list.put("344566", "000023");
-		list.put("344666", "000122");
-		list.put("345555", "001112");
-		list.put("345556", "000113");
-		list.put("345566", "000023");
-		list.put("345666", "000122");
-		list.put("346666", "001112");
-		list.put("355555", "011111");
-		list.put("355556", "000113");
-		list.put("355566", "000023");
-		list.put("355666", "000122");
-		list.put("356666", "001112");
-		list.put("366666", "011111");
-		list.put("444444", "000023");// iwashi
-		list.put("444445", "000113");
-		list.put("444446", "000005");// 333335
-		list.put("444455", "000023");
-		list.put("444456", "000023");
-		list.put("444466", "000023");
-		list.put("444555", "000122");
-		list.put("444556", "000113");
-		list.put("444566", "000023");
-		list.put("444666", "000122");
-		list.put("445555", "000023");// iwashi
-		list.put("445556", "000113");
-		list.put("445566", "000023");
-		list.put("445666", "000122");
-		list.put("446666", "001112");
-		list.put("455555", "000023");// iwashi
-		list.put("455556", "000113");
-		list.put("455566", "000023");
-		list.put("455666", "000122");
-		list.put("456666", "001112");
-		list.put("466666", "011111");
-		list.put("555555", "000023");// iwashi
-		list.put("555556", "000113");
-		list.put("555566", "000023");
-		list.put("555666", "000122");
-		list.put("556666", "001112");
-		list.put("566666", "000023");// iwashi
-		list.put("666666", "000023");// iwashi
-
-		for (int i = 3; i <= 6; i++) {
-			ArrayList<Integer> places = new ArrayList<Integer>();
-			for (int j = 0; j < clone.length; j++) {
-				if (pattern[j] == i) {
-					places.add(j);
-				}
-			}
-
-			ArrayList<Integer> times = new ArrayList<Integer>();
-			for (int j = 0; j < key.length(); j++) {
-				int k = Integer.parseInt(key.substring(j, j + 1));
-				if (k == i) {
-					String timeString = list.get(key).substring(j, j + 1);
-					times.add(Integer.parseInt(timeString));
-				}
-			}
-
-			Collections.shuffle(places);
-			for (int j = 0; j < times.size(); j++) {
-				for (int j2 = 0; j2 < times.get(j); j2++) {
-					command.append(places.get(j));
-					command.append(" ");
-				}
-			}
-		}
-
-		writer.println(command.toString());
-		writer.flush();
 	}
 
 }
